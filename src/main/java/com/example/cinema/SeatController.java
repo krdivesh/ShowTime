@@ -15,7 +15,6 @@ public class SeatController {
 
     private final CinemaSeats cinemaSeats = new CinemaSeats();
 
-    @Autowired
     private final ObjectMapper objectMapper;
 
     @Autowired
@@ -77,8 +76,6 @@ public class SeatController {
 
     @GetMapping("/stats")
     public ResponseEntity<String> getStats(@RequestParam(required = false) String password) throws JsonProcessingException {
-        System.out.println(password);
-
         if (password!=null && password.equals("super_secret")) {
             return ResponseEntity.ok().body(objectMapper
                     .writeValueAsString(Map.of("income", cinemaSeats.getIncome(),
